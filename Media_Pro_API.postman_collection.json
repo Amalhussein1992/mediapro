@@ -1,0 +1,1146 @@
+{
+	"info": {
+		"_postman_id": "mediapro-api-2025",
+		"name": "Media Pro API",
+		"description": "Complete API collection for Media Pro - Social Media Management Platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"auth_token\", jsonData.data.token);",
+									"    pm.environment.set(\"user_id\", jsonData.data.user.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"auth_token\", jsonData.data.token);",
+									"    pm.environment.set(\"user_id\", jsonData.data.user.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "List Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/posts?page=1&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "15"
+								},
+								{
+									"key": "status",
+									"value": "published",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"post_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Check out our latest social media tips! 🚀 #SocialMedia #Marketing\",\n    \"platforms\": [\"instagram\", \"facebook\", \"twitter\"],\n    \"status\": \"scheduled\",\n    \"scheduled_at\": \"2025-10-15 10:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/posts/{{post_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{post_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Updated post content with new insights! 🎯\",\n    \"status\": \"published\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/posts/{{post_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{post_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/posts/{{post_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{post_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "Dashboard Analytics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/analytics/dashboard?start_date=2025-09-01&end_date=2025-10-12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2025-09-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-10-12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Analytics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/analytics/posts/{{post_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"posts",
+								"{{post_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account Analytics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/analytics/accounts/{{account_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Engagement Trends",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/analytics/trends?days=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"trends"
+							],
+							"query": [
+								{
+									"key": "days",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Best Posting Times",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/analytics/best-times",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"best-times"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AI Content Generation",
+			"item": [
+				{
+					"name": "Generate Caption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\": \"Social media marketing tips for small businesses\",\n    \"tone\": \"professional\",\n    \"platform\": \"instagram\",\n    \"length\": \"medium\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/generate-caption",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"generate-caption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Hashtags",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Excited to share our new social media strategy that's helping businesses grow their online presence!\",\n    \"platform\": \"instagram\",\n    \"count\": 15\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/generate-hashtags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"generate-hashtags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Improve Content",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"today we launched a new feature for scheduling posts\",\n    \"improvements\": [\"grammar\", \"engagement\", \"clarity\", \"emojis\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/improve-content",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"improve-content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Content Ideas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"niche\": \"digital marketing\",\n    \"platform\": \"instagram\",\n    \"count\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/ai/generate-ideas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"ai",
+								"generate-ideas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Social Accounts",
+			"item": [
+				{
+					"name": "List Social Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/social-accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"social-accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Connect Social Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"account_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"platform\": \"instagram\",\n    \"account_name\": \"my_instagram_account\",\n    \"access_token\": \"sample_access_token_here\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/social-accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"social-accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Social Account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/social-accounts/{{account_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"social-accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Social Account",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_active\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/social-accounts/{{account_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"social-accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Social Account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/social-accounts/{{account_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"social-accounts",
+								"{{account_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand Kits",
+			"item": [
+				{
+					"name": "List Brand Kits",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/brand-kits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand-kits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Brand Kit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"brand_kit_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "My Brand",
+									"type": "text"
+								},
+								{
+									"key": "primary_color",
+									"value": "#6366F1",
+									"type": "text"
+								},
+								{
+									"key": "secondary_color",
+									"value": "#A855F7",
+									"type": "text"
+								},
+								{
+									"key": "accent_color",
+									"value": "#EC4899",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brand-kits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand-kits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brand Kit",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/brand-kits/{{brand_kit_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand-kits",
+								"{{brand_kit_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Brand Kit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Updated Brand Name",
+									"type": "text"
+								},
+								{
+									"key": "primary_color",
+									"value": "#3B82F6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brand-kits/{{brand_kit_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand-kits",
+								"{{brand_kit_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Brand Kit",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/brand-kits/{{brand_kit_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand-kits",
+								"{{brand_kit_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "List Subscription Plans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/subscription-plans",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-plans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subscription Plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/subscription-plans/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscription-plans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscribe to Plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"plan_id\": 2,\n    \"payment_method\": \"stripe\",\n    \"billing_cycle\": \"monthly\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/subscriptions/subscribe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Subscription",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subscriptions/current",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/subscriptions/cancel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "List Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 29.99,\n    \"currency\": \"USD\",\n    \"payment_method\": \"stripe\",\n    \"subscription_plan_id\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,311 @@
+{
+  "info": {
+    "name": "Social Media AI Services",
+    "description": "Comprehensive AI services API endpoints for social media management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "YOUR_AUTH_TOKEN_HERE",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Get Available Providers",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/ai/providers",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "providers"]
+        },
+        "description": "Get list of available AI providers and their configuration status"
+      }
+    },
+    {
+      "name": "2. Generate Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"Tips for staying productive while working from home\",\n  \"platform\": \"instagram\",\n  \"tone\": \"friendly\",\n  \"length\": \"medium\",\n  \"language\": \"en\",\n  \"provider\": \"openai\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/generate-content",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "generate-content"]
+        },
+        "description": "Generate social media post content using AI"
+      }
+    },
+    {
+      "name": "3. Generate Hashtags",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Just launched our new fitness app with AI-powered workout plans!\",\n  \"platform\": \"instagram\",\n  \"count\": 10\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/generate-hashtags",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "generate-hashtags"]
+        },
+        "description": "Generate relevant hashtags for social media content"
+      }
+    },
+    {
+      "name": "4. Transcribe Voice",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "audio",
+              "type": "file",
+              "src": "/path/to/your/audio.mp3",
+              "description": "Audio file to transcribe (mp3, wav, m4a, etc.)"
+            },
+            {
+              "key": "language",
+              "value": "en",
+              "type": "text",
+              "description": "Optional: Language code (en, ar, es, fr, de)"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/transcribe-voice",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "transcribe-voice"]
+        },
+        "description": "Transcribe audio file to text using Whisper API"
+      }
+    },
+    {
+      "name": "5. Voice to Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "audio",
+              "type": "file",
+              "src": "/path/to/your/audio.mp3",
+              "description": "Audio file with your voice message"
+            },
+            {
+              "key": "platform",
+              "value": "instagram",
+              "type": "text",
+              "description": "Target platform"
+            },
+            {
+              "key": "tone",
+              "value": "professional",
+              "type": "text",
+              "description": "Content tone"
+            },
+            {
+              "key": "length",
+              "value": "medium",
+              "type": "text",
+              "description": "Content length"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/voice-to-post",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "voice-to-post"]
+        },
+        "description": "Complete workflow: Transcribe audio and generate social media post"
+      }
+    },
+    {
+      "name": "6. Enhance Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"we have new product its really good you should try\",\n  \"tone\": \"professional\",\n  \"improvements\": [\"grammar\", \"engagement\", \"clarity\", \"emojis\"]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/enhance-content",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "enhance-content"]
+        },
+        "description": "Enhance existing content with AI improvements"
+      }
+    },
+    {
+      "name": "7. Generate Multilingual Content",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prompt\": \"Announcing our new sustainable product line\",\n  \"languages\": [\"en\", \"ar\", \"es\"],\n  \"platform\": \"instagram\",\n  \"tone\": \"enthusiastic\",\n  \"length\": \"medium\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/generate-multilingual",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "generate-multilingual"]
+        },
+        "description": "Generate content in multiple languages simultaneously"
+      }
+    },
+    {
+      "name": "8. Set Provider",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"openai\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/set-provider",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "set-provider"]
+        },
+        "description": "Set preferred AI provider (openai, gemini, or claude)"
+      }
+    },
+    {
+      "name": "9. Get Transcription Info",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/ai/transcription-info",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "transcription-info"]
+        },
+        "description": "Get information about voice transcription capabilities"
+      }
+    },
+    {
+      "name": "Legacy - Generate Caption",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"topic\": \"Coffee shop opening\",\n  \"tone\": \"friendly\",\n  \"platform\": \"instagram\",\n  \"length\": \"medium\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ai/generate-caption",
+          "host": ["{{base_url}}"],
+          "path": ["api", "ai", "generate-caption"]
+        },
+        "description": "Legacy endpoint - kept for backward compatibility"
+      }
+    }
+  ]
+}

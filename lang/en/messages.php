@@ -1,0 +1,91 @@
+<?php
+
+return [
+    // Sidebar Menu
+    'Admin Dashboard' => 'Admin Dashboard',
+    'Dashboard' => 'Dashboard',
+    'Posts' => 'Posts',
+    'Users' => 'Users',
+    'Social Accounts' => 'Social Accounts',
+    'Analytics' => 'Analytics',
+    'Brand Kits' => 'Brand Kits',
+    'Ads Campaigns' => 'Ads Campaigns',
+    'Settings' => 'Settings',
+    'Landing Page' => 'Landing Page',
+    'Pages Management' => 'Pages Management',
+
+    // Navigation
+    'Need help?' => 'Need help?',
+    'Documentation' => 'Documentation',
+    'Search anything...' => 'Search anything...',
+    'Administrator' => 'Administrator',
+
+    // Common
+    'English' => 'English',
+    'Arabic' => 'العربية',
+
+    // Actions
+    'Create' => 'Create',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Save' => 'Save',
+    'Cancel' => 'Cancel',
+    'Back' => 'Back',
+    'View' => 'View',
+    'Export' => 'Export',
+    'Import' => 'Import',
+    'Filter' => 'Filter',
+    'Search' => 'Search',
+    'Refresh' => 'Refresh',
+
+    // Status
+    'Active' => 'Active',
+    'Inactive' => 'Inactive',
+    'Published' => 'Published',
+    'Draft' => 'Draft',
+    'Scheduled' => 'Scheduled',
+    'Archived' => 'Archived',
+
+    // Landing Page
+    'Manage Landing Page' => 'Manage Landing Page',
+    'Hero Section' => 'Hero Section',
+    'Features Section' => 'Features Section',
+    'Pricing Section' => 'Pricing Section',
+    'Testimonials' => 'Testimonials',
+    'FAQ Section' => 'FAQ Section',
+    'App Name' => 'App Name',
+    'App Tagline' => 'App Tagline',
+    'Logo URL' => 'Logo URL',
+    'Company Name' => 'Company Name',
+    'Support Email' => 'Support Email',
+    'Support Phone' => 'Support Phone',
+    'Theme Colors' => 'Theme Colors',
+    'Primary Color' => 'Primary Color',
+    'Secondary Color' => 'Secondary Color',
+    'Accent Color' => 'Accent Color',
+    'Enable AI Features' => 'Enable AI Features',
+    'Enable Analytics' => 'Enable Analytics',
+    'Enable Ads Management' => 'Enable Ads Management',
+
+    // Pages
+    'Manage Pages' => 'Manage Pages',
+    'Add New Page' => 'Add New Page',
+    'Edit Page' => 'Edit Page',
+    'Page Title' => 'Page Title',
+    'Page Content' => 'Page Content',
+    'Page URL' => 'Page URL',
+    'Meta Description' => 'Meta Description',
+    'Meta Keywords' => 'Meta Keywords',
+    'About' => 'About',
+    'Contact' => 'Contact',
+    'Privacy Policy' => 'Privacy Policy',
+    'Terms of Service' => 'Terms of Service',
+    'Features' => 'Features',
+    'Pricing' => 'Pricing',
+    'Blog' => 'Blog',
+    'Careers' => 'Careers',
+    'Help Center' => 'Help Center',
+    'Community' => 'Community',
+    'API Documentation' => 'API Documentation',
+    'Security' => 'Security',
+];
