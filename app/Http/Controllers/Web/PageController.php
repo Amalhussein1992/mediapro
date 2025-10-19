@@ -13,17 +13,31 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-        // Get page from database
-        $page = Page::where('slug', $slug)
-                    ->where('is_active', 1)
-                    ->first();
+        // Try to get page from database first
+        try {
+            $page = Page::where('slug', $slug)
+                        ->where('is_active', 1)
+                        ->first();
 
-        if (!$page) {
-            abort(404, 'Page not found');
+            if ($page) {
+                return view('pages.show', compact('page'));
+            }
+        } catch (\Exception $e) {
+            // Database error - fall back to blade files
         }
 
-        // Always use the generic view to display content from database
-        // This ensures all edits made in admin panel are reflected on the frontend
-        return view('pages.show', compact('page'));
+        // Fallback: Check if blade file exists
+        $viewPath = 'pages.' . $slug;
+        if (view()->exists($viewPath)) {
+            // Create a simple page object for the view
+            $page = (object) [
+                'title' => ucfirst($slug),
+                'slug' => $slug,
+                'content' => '',
+            ];
+            return view($viewPath, compact('page'));
+        }
+
+        abort(404, 'Page not found');
     }
 }
