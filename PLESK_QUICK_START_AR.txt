@@ -1,0 +1,119 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║     MediaPro - خطوات سريعة للرفع على Plesk                  ║
+║              (بدون SSH - الطريقة الأسهل!)                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+📋 الخطوات السريعة:
+───────────────────────────────────────────────────────────────
+
+✅ الخطوة 1: تجهيز الملفات
+   ┗━━> اضغط مرتين على: upload-simple.bat
+   ┗━━> انتظر حتى ينتهي
+   ┗━━> سيتم إنشاء: mediapro-upload.zip
+
+
+✅ الخطوة 2: الرفع على Plesk
+   1. افتح Plesk Panel
+   2. Websites & Domains → mediapro.social
+   3. Files → File Manager
+   4. اذهب إلى مجلد: httpdocs
+   5. Upload → اختر mediapro-upload.zip
+   6. بعد الرفع: Extract Files (فك الضغط)
+
+
+✅ الخطوة 3: تغيير Document Root (مهم جداً!)
+   1. Websites & Domains → mediapro.social
+   2. Hosting Settings (أو Hosting & DNS)
+   3. ابحث عن: Document Root
+   4. غيّره من: httpdocs
+              إلى: httpdocs/public
+   5. Apply أو OK
+
+
+✅ الخطوة 4: التفعيل (بدون SSH!)
+   افتح في المتصفح:
+   ┗━━> https://mediapro.social/setup-server.php?password=mediapro2025
+
+   سيشتغل تلقائياً ويعمل كل الأوامر المطلوبة!
+
+
+✅ الخطوة 5: الاختبار
+   ┗━━> https://mediapro.social/test.php
+   ┗━━> https://mediapro.social/api/config
+   ┗━━> https://mediapro.social
+
+
+⚠️ مهم جداً:
+───────────────────────────────────────────────────────────────
+بعد ما يشتغل كل شي، احذف هذين الملفين للأمان:
+   ✗ public/setup-server.php
+   ✗ public/test.php
+
+
+🔧 إذا ما اشتغل:
+───────────────────────────────────────────────────────────────
+
+المشكلة: خطأ 500
+   الحل: تأكد Document Root = httpdocs/public
+
+المشكلة: vendor folder not found
+   الحل: لازم تشغّل composer install عبر:
+   1. Plesk → Applications → Composer
+   2. أو عبر SSH Terminal
+
+المشكلة: Permissions error
+   الحل: لازم SSH لتشغيل:
+   chmod -R 775 storage bootstrap/cache
+
+
+📱 طريقة الوصول لـ SSH Terminal في Plesk:
+───────────────────────────────────────────────────────────────
+
+الطريقة 1:
+   Websites & Domains → mediapro.social
+   ابحث عن: SSH Terminal أو Web Terminal
+
+الطريقة 2:
+   استخدم PowerShell على Windows:
+   ssh username@mediapro.social
+
+الطريقة 3:
+   حمّل برنامج PuTTY:
+   https://www.putty.org
+
+
+🔑 الأوامر المطلوبة في SSH (إذا احتجتها):
+───────────────────────────────────────────────────────────────
+
+cd /var/www/vhosts/mediapro.social/httpdocs
+composer install --no-dev --optimize-autoloader
+php artisan migrate --force
+php artisan optimize
+chmod -R 775 storage bootstrap/cache
+
+
+✨ للتعديل المستقبلي:
+───────────────────────────────────────────────────────────────
+
+→ عدّل الملفات مباشرة عبر File Manager في Plesk
+→ أو استخدم FTP/SFTP (FileZilla, WinSCP)
+→ بعد تعديل config: افتح setup-server.php مرة ثانية
+
+
+📚 الملفات المساعدة:
+───────────────────────────────────────────────────────────────
+
+✅ ابدأ_هنا_PLESK.md         → الدليل الشامل الكامل
+✅ FIX_500_ERROR_AR.md       → حل مشاكل الأخطاء
+✅ SSH_ACCESS_GUIDE_AR.md    → طريقة الوصول للـ SSH
+✅ README_UPLOAD_AR.txt      → الملخص السريع
+
+
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║  🎯 ابدأ الآن: اضغط مرتين على upload-simple.bat           ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝

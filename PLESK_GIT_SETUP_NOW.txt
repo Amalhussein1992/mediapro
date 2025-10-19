@@ -1,0 +1,221 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   ربط Plesk بـ GitHub - خطوات مباشرة الآن!                  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+📌 معلومات الـ Repository:
+───────────────────────────────────────────────────────────────
+Repository: https://github.com/Amalhussein1992/mediapro.git
+Owner: Amalhussein1992
+Repo: mediapro
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 1️⃣: إنشاء GitHub Personal Access Token
+═══════════════════════════════════════════════════════════════
+
+1. اذهب إلى:
+   https://github.com/settings/tokens
+
+2. Developer settings → Personal access tokens →
+   Tokens (classic)
+
+3. Generate new token (classic)
+
+4. Token name: Plesk-mediapro-deployment
+
+5. Select scopes:
+   ✅ repo (كل الصلاحيات تحته)
+   ✅ admin:repo_hook
+
+6. Generate token
+
+7. ⚠️ انسخ التوكن فوراً! (يظهر مرة واحدة فقط)
+   مثال: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 2️⃣: ربط Repository في Plesk
+═══════════════════════════════════════════════════════════════
+
+في Plesk (الشاشة اللي قدامك):
+
+1. إذا كان Git مربوط:
+   → Manage domain → Repository Settings
+
+2. إذا لم يكن مربوط:
+   → Add Repository أو Connect
+
+3. املأ البيانات:
+   ┌─────────────────────────────────────────────────┐
+   │ Repository URL:                                 │
+   │ https://github.com/Amalhussein1992/mediapro.git │
+   │                                                 │
+   │ Repository Path: /httpdocs                      │
+   │                                                 │
+   │ Branch: main                                    │
+   │                                                 │
+   │ Authentication:                                 │
+   │ Username: Amalhussein1992                       │
+   │ Password: ghp_xxxxx... (التوكن من الخطوة 1)   │
+   └─────────────────────────────────────────────────┘
+
+4. Save/Submit
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 3️⃣: تحديث Deployment Settings
+═══════════════════════════════════════════════════════════════
+
+في نفس صفحة Git في Plesk:
+
+1. Deployment mode:
+   ● Automatic  ← تأكد أنه مختار
+
+2. Deployment steps:
+   ⬜ 1. Enable maintenance mode
+   ✅ 2. Fetch source code
+   ✅ 3. Deploy source code from Git
+   ✅ 4. Install composer.json dependencies
+   ⬜ 5. Install package.json dependencies (إلغي هذا)
+   ✅ 6. Run deployment script
+   ⬜ 7. Disable maintenance mode
+
+3. Deployment script → Edit script
+   → انسخ السكريبت من plesk-deployment-script.sh
+   → Save
+
+4. Submit
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 4️⃣: إضافة Webhook في GitHub
+═══════════════════════════════════════════════════════════════
+
+1. اذهب إلى:
+   https://github.com/Amalhussein1992/mediapro/settings/hooks
+
+2. Add webhook
+
+3. Payload URL: (من Plesk)
+   https://65-159-66-148.host.secureserver.net:8443/modules/git/public/web-hook.php?uuid=16a7feec-5a60-224d-2881-8bb9e4e5607d
+
+4. Content type: application/json
+
+5. Which events: ⚪ Just the push event
+
+6. Active: ✅
+
+7. Add webhook
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 5️⃣: اختبار Auto Deployment
+═══════════════════════════════════════════════════════════════
+
+في Terminal على جهازك:
+
+cd c:\Users\HP\Desktop\social-media-app\SocialMediaManager\backend-laravel
+
+# عمل تعديل بسيط
+echo "// Auto deploy test" >> routes/api.php
+
+# Commit
+git add .
+git commit -m "Test: Auto deployment"
+
+# Push
+git push origin main
+
+↓ انتظر 10-30 ثانية ↓
+
+في Plesk → Git → شوف Deployment Status
+
+يجب أن يبدأ Deploy تلقائياً!
+
+
+═══════════════════════════════════════════════════════════════
+  ✅ التحقق من النجاح
+═══════════════════════════════════════════════════════════════
+
+افتح في المتصفح:
+
+🔗 https://mediapro.social/test.php
+🔗 https://mediapro.social/api/config
+
+
+═══════════════════════════════════════════════════════════════
+  🔧 إذا واجهت مشاكل
+═══════════════════════════════════════════════════════════════
+
+المشكلة: Authentication failed
+   الحل: تحقق من:
+   - التوكن صحيح وكامل
+   - Username: Amalhussein1992
+   - الصلاحيات: repo ✓ admin:repo_hook ✓
+
+المشكلة: Webhook لا يعمل
+   الحل:
+   1. GitHub → Webhooks → Recent Deliveries
+   2. شوف الأخطاء
+   3. Redeliver
+
+المشكلة: Deployment يفشل
+   الحل:
+   1. Plesk → Git → Logs
+   2. شوف رسالة الخطأ
+   3. أرسل لي الـ Error
+
+
+═══════════════════════════════════════════════════════════════
+  📋 نسخة Deployment Script الكاملة
+═══════════════════════════════════════════════════════════════
+
+#!/bin/bash
+set -e
+
+echo "MediaPro - Deployment Started"
+cd /var/www/vhosts/mediapro.social/httpdocs
+
+echo "[1/8] Composer install..."
+composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+echo "[2/8] Environment setup..."
+if [ ! -f ".env" ]; then
+    [ -f ".env.server" ] && cp .env.server .env
+fi
+
+echo "[3/8] Clear caches..."
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+
+echo "[4/8] Migrations..."
+php artisan migrate --force
+
+echo "[5/8] Build caches..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+echo "[6/8] Storage link..."
+php artisan storage:link || true
+
+echo "[7/8] Fix permissions..."
+chmod -R 775 storage bootstrap/cache
+chown -R $USER:psacln storage bootstrap/cache || true
+
+echo "[8/8] Verify..."
+php artisan --version
+
+echo "✓ Deployment Complete! $(date)"
+
+
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║  🎯 ابدأ بالخطوة 1: إنشاء GitHub Token                     ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝

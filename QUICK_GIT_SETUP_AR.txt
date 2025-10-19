@@ -1,0 +1,200 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   Git Auto Deployment - الإعداد السريع (5 دقائق)            ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+🎯 الهدف: كل ما تعمل git push، يرفع تلقائياً على السيرفر!
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 1️⃣: إعداد Plesk Git (هنا الآن!)
+═══════════════════════════════════════════════════════════════
+
+في الشاشة اللي قدامك:
+
+   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃  Deployment mode:                                    ┃
+   ┃  ○ Manual                                            ┃
+   ┃  ● Automatic  ← اختر هذا! ✓                         ┃
+   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃  Deployment script:                                  ┃
+   ┃  [Edit script] ← اضغط هنا                           ┃
+   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+   في محرر السكريبت:
+   → احذف كل شي موجود
+   → انسخ السكريبت من: plesk-deployment-script.sh
+   → احفظ
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 2️⃣: إنشاء GitHub Repository (دقيقة واحدة)
+═══════════════════════════════════════════════════════════════
+
+   1. اذهب إلى: https://github.com/new
+
+   2. Repository name: mediapro-backend
+
+   3. ✓ Private (للأمان)
+
+   4. Create repository
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 3️⃣: ربط المشروع بـ GitHub (3 دقائق)
+═══════════════════════════════════════════════════════════════
+
+   افتح Terminal/PowerShell:
+
+   cd c:\Users\HP\Desktop\social-media-app\SocialMediaManager\backend-laravel
+
+   git add .
+   git commit -m "Initial commit: MediaPro Backend"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/mediapro-backend.git
+   git push -u origin main
+
+   (استبدل YOUR_USERNAME باسم مستخدمك)
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 4️⃣: ربط Plesk بـ GitHub
+═══════════════════════════════════════════════════════════════
+
+   في Plesk:
+
+   1. Websites & Domains → mediapro.social
+
+   2. Git أو Git for Websites
+
+   3. Add Repository أو Connect:
+      ┌──────────────────────────────────────────────┐
+      │ Repository URL:                              │
+      │ https://github.com/YOUR_USERNAME/            │
+      │ mediapro-backend.git                         │
+      │                                              │
+      │ Branch: main                                 │
+      │ Path: /httpdocs                              │
+      └──────────────────────────────────────────────┘
+
+   4. Submit
+
+
+═══════════════════════════════════════════════════════════════
+  الخطوة 5️⃣: إعداد Webhook (دقيقة واحدة)
+═══════════════════════════════════════════════════════════════
+
+   في GitHub Repository:
+
+   1. Settings → Webhooks → Add webhook
+
+   2. Payload URL: (انسخ من Plesk - الرابط الطويل)
+      https://65-159-66-148.host.secureserver.net:8443/
+      modules/git/public/web-hook.php?uuid=...
+
+   3. Content type: application/json
+
+   4. Events: ✓ Just the push event
+
+   5. Add webhook
+
+
+═══════════════════════════════════════════════════════════════
+  ✅ انتهى! اختبر الآن:
+═══════════════════════════════════════════════════════════════
+
+   في Terminal:
+
+   cd c:\Users\HP\Desktop\social-media-app\SocialMediaManager\backend-laravel
+
+   echo "// Test" >> routes/api.php
+   git add .
+   git commit -m "Test auto deploy"
+   git push origin main
+
+   ↓ انتظر 10-30 ثانية ↓
+
+   في Plesk → Git → شوف Deployment Status
+
+   ✓ يجب أن يبدأ Deployment تلقائياً!
+
+
+╔══════════════════════════════════════════════════════════════╗
+║              🎉 من الآن فصاعداً:                            ║
+╚══════════════════════════════════════════════════════════════╝
+
+   1. عدّل الكود على جهازك
+   2. git add . && git commit -m "وصف التعديل"
+   3. git push
+   4. ✓ يرفع تلقائياً!
+
+
+═══════════════════════════════════════════════════════════════
+  📋 نسخة السكريبت للـ Deployment:
+═══════════════════════════════════════════════════════════════
+
+#!/bin/bash
+set -e
+
+echo "Starting MediaPro deployment..."
+cd /var/www/vhosts/mediapro.social/httpdocs
+
+# Install dependencies
+echo "[1/7] Installing dependencies..."
+composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+# Setup .env
+echo "[2/7] Checking .env..."
+if [ ! -f ".env" ]; then
+    if [ -f ".env.server" ]; then
+        cp .env.server .env
+        echo "Created .env"
+    fi
+fi
+
+# Clear caches
+echo "[3/7] Clearing caches..."
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+
+# Migrations
+echo "[4/7] Running migrations..."
+php artisan migrate --force
+
+# Build caches
+echo "[5/7] Building caches..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Storage link
+echo "[6/7] Storage link..."
+php artisan storage:link || true
+
+# Fix permissions
+echo "[7/7] Fixing permissions..."
+chmod -R 775 storage bootstrap/cache
+chown -R $USER:psacln storage bootstrap/cache || true
+
+echo "✓ Deployment complete! $(date)"
+
+
+═══════════════════════════════════════════════════════════════
+  📚 مزيد من التفاصيل:
+═══════════════════════════════════════════════════════════════
+
+   → GIT_AUTO_DEPLOYMENT_AR.md (الدليل الشامل)
+   → plesk-deployment-script.sh (السكريبت كامل)
+
+
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   ابدأ الآن! ✓ اختر Automatic في الشاشة قدامك              ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
