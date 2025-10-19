@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Pro - Modern Social Media Management Platform</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Social Media Manager - مدير وسائل التواصل الاجتماعي</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -691,9 +690,9 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="{{ asset('logo.jpeg') }}" alt="Media Pro Logo">
-                <div class="logo-text content-en">Media Pro</div>
-                <div class="logo-text content-ar">ميديا برو</div>
+                <img src="{{ asset('logo.jpeg') }}" alt="SocialHub Logo">
+                <div class="logo-text content-en">SocialHub</div>
+                <div class="logo-text content-ar">سوشيال هب</div>
             </div>
 
             <div class="lang-switcher">
@@ -732,18 +731,18 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="#features" class="cta-button content-en">Explore Features →</a>
-                <a href="#features" class="cta-button content-ar">استكشف الميزات ←</a>
+                <a href="#features" class="cta-button content-en">Start Free Trial →</a>
+                <a href="#features" class="cta-button content-ar">ابدأ النسخة التجريبية المجانية ←</a>
 
-                <a href="#testimonials" class="cta-button cta-secondary content-en">Read Reviews</a>
-                <a href="#testimonials" class="cta-button cta-secondary content-ar">اقرأ التقييمات</a>
+                <a href="#demo" class="cta-button cta-secondary content-en">Watch Demo</a>
+                <a href="#demo" class="cta-button cta-secondary content-ar">شاهد العرض التوضيحي</a>
             </div>
 
             <div class="dashboard-preview">
                 <div class="dashboard-img">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop&auto=format&q=80"
-                         alt="Media Pro Dashboard"
-                         style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);">
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748B;">
+                        📊 Dashboard Preview
+                    </div>
                 </div>
             </div>
         </div>
@@ -856,7 +855,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
+    <section class="testimonials">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge content-en">💬 Testimonials</div>
@@ -916,14 +915,14 @@
     <section class="cta-section">
         <div class="cta-content">
             <div class="container">
-                <h2 class="cta-title content-en">Transform Your Social Media Management</h2>
-                <h2 class="cta-title content-ar">حوّل إدارة وسائل التواصل الاجتماعي الخاصة بك</h2>
+                <h2 class="cta-title content-en">Ready to Transform Your Social Media?</h2>
+                <h2 class="cta-title content-ar">هل أنت مستعد لتحويل وسائل التواصل الخاصة بك؟</h2>
 
-                <p class="cta-desc content-en">Media Pro helps thousands of successful brands and creators manage their social media presence with powerful AI-driven tools and analytics.</p>
-                <p class="cta-desc content-ar">ميديا برو يساعد آلاف العلامات التجارية والمبدعين الناجحين على إدارة تواجدهم على وسائل التواصل الاجتماعي بأدوات قوية مدعومة بالذكاء الاصطناعي والتحليلات.</p>
+                <p class="cta-desc content-en">Join thousands of successful brands and creators. Start your free 14-day trial today.</p>
+                <p class="cta-desc content-ar">انضم إلى آلاف العلامات التجارية والمبدعين الناجحين. ابدأ تجربتك المجانية لمدة 14 يوماً اليوم.</p>
 
-                <a href="#features" class="cta-button content-en">Learn More About Our Features</a>
-                <a href="#features" class="cta-button content-ar">تعرف على المزيد حول ميزاتنا</a>
+                <a href="#" class="cta-button content-en">Start Free Trial - No Credit Card Required</a>
+                <a href="#" class="cta-button content-ar">ابدأ النسخة التجريبية المجانية - لا حاجة لبطاقة ائتمان</a>
             </div>
         </div>
     </section>
@@ -935,9 +934,9 @@
                 <h3 class="content-en">Product</h3>
                 <h3 class="content-ar">المنتج</h3>
                 <ul class="footer-links">
-                    <li><a href="/features" class="content-en">Features</a><a href="/features" class="content-ar">الميزات</a></li>
-                    <li><a href="/pricing" class="content-en">Pricing</a><a href="/pricing" class="content-ar">الأسعار</a></li>
-                    <li><a href="/api" class="content-en">API</a><a href="/api" class="content-ar">واجهة برمجية</a></li>
+                    <li><a href="#" class="content-en">Features</a><a href="#" class="content-ar">الميزات</a></li>
+                    <li><a href="#" class="content-en">Pricing</a><a href="#" class="content-ar">الأسعار</a></li>
+                    <li><a href="#" class="content-en">API</a><a href="#" class="content-ar">واجهة برمجية</a></li>
                 </ul>
             </div>
 
@@ -945,9 +944,9 @@
                 <h3 class="content-en">Company</h3>
                 <h3 class="content-ar">الشركة</h3>
                 <ul class="footer-links">
-                    <li><a href="/about" class="content-en">About</a><a href="/about" class="content-ar">من نحن</a></li>
-                    <li><a href="/blog" class="content-en">Blog</a><a href="/blog" class="content-ar">المدونة</a></li>
-                    <li><a href="/careers" class="content-en">Careers</a><a href="/careers" class="content-ar">الوظائف</a></li>
+                    <li><a href="#" class="content-en">About</a><a href="#" class="content-ar">من نحن</a></li>
+                    <li><a href="#" class="content-en">Blog</a><a href="#" class="content-ar">المدونة</a></li>
+                    <li><a href="#" class="content-en">Careers</a><a href="#" class="content-ar">الوظائف</a></li>
                 </ul>
             </div>
 
@@ -955,9 +954,9 @@
                 <h3 class="content-en">Resources</h3>
                 <h3 class="content-ar">الموارد</h3>
                 <ul class="footer-links">
-                    <li><a href="/help" class="content-en">Help Center</a><a href="/help" class="content-ar">مركز المساعدة</a></li>
-                    <li><a href="/community" class="content-en">Community</a><a href="/community" class="content-ar">المجتمع</a></li>
-                    <li><a href="/contact" class="content-en">Contact</a><a href="/contact" class="content-ar">اتصل بنا</a></li>
+                    <li><a href="#" class="content-en">Help Center</a><a href="#" class="content-ar">مركز المساعدة</a></li>
+                    <li><a href="#" class="content-en">Community</a><a href="#" class="content-ar">المجتمع</a></li>
+                    <li><a href="#" class="content-en">Contact</a><a href="#" class="content-ar">اتصل بنا</a></li>
                 </ul>
             </div>
 
@@ -965,34 +964,22 @@
                 <h3 class="content-en">Legal</h3>
                 <h3 class="content-ar">قانوني</h3>
                 <ul class="footer-links">
-                    <li><a href="/privacy" class="content-en">Privacy</a><a href="/privacy" class="content-ar">الخصوصية</a></li>
-                    <li><a href="/terms" class="content-en">Terms</a><a href="/terms" class="content-ar">الشروط</a></li>
-                    <li><a href="/security" class="content-en">Security</a><a href="/security" class="content-ar">الأمان</a></li>
+                    <li><a href="#" class="content-en">Privacy</a><a href="#" class="content-ar">الخصوصية</a></li>
+                    <li><a href="#" class="content-en">Terms</a><a href="#" class="content-ar">الشروط</a></li>
+                    <li><a href="#" class="content-en">Security</a><a href="#" class="content-ar">الأمان</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p class="content-en">&copy; 2025 Media Pro. All rights reserved. Built with ❤️ for creators.</p>
-            <p class="content-ar">&copy; 2025 ميديا برو. جميع الحقوق محفوظة. صنع بـ ❤️ للمبدعين.</p>
+            <p class="content-en">&copy; 2025 SocialHub. All rights reserved. Built with ❤️ for creators.</p>
+            <p class="content-ar">&copy; 2025 سوشيال هب. جميع الحقوق محفوظة. صنع بـ ❤️ للمبدعين.</p>
         </div>
     </footer>
 
     <script>
-        // Load saved language on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('mediapro_lang') || 'en';
-            applyLanguage(savedLang);
-        });
-
         // Language Switcher
         function switchLang(lang) {
-            // Save language preference
-            localStorage.setItem('mediapro_lang', lang);
-            applyLanguage(lang);
-        }
-
-        function applyLanguage(lang) {
             const html = document.documentElement;
             const body = document.body;
 
@@ -1000,14 +987,10 @@
             html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             body.setAttribute('data-lang', lang);
 
-            // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if ((lang === 'ar' && btn.textContent.includes('العربية')) ||
-                    (lang === 'en' && btn.textContent.includes('English'))) {
-                    btn.classList.add('active');
-                }
             });
+            event.target.classList.add('active');
         }
 
         // Smooth Scroll
