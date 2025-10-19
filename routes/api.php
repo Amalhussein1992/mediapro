@@ -300,3 +300,26 @@ Route::get('/test-deployment', function () {
         'environment' => app()->environment(),
     ]);
 });
+
+// Seed pages endpoint (temporary - remove after use)
+Route::get('/seed-pages', function () {
+    try {
+        Artisan::call('db:seed', ['--class' => 'PagesSeeder']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Pages seeded successfully!',
+            'output' => Artisan::output(),
+            'next_steps' => [
+                '1. Test pages: https://www.mediapro.social/features',
+                '2. Test pages: https://www.mediapro.social/pricing',
+                '3. Remove this route from routes/api.php',
+            ],
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+});
