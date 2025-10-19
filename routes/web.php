@@ -19,6 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+// Temporary: Clear cache
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+
+    return '<h1>✅ Cache Cleared!</h1><p>All caches have been cleared.</p><p><a href="/">Go to Home Page</a></p><p>Version: 2025-01-19 22:00</p>';
+});
+
 // Temporary: Seed pages directly via web route
 Route::get('/run-seeder', function () {
     try {

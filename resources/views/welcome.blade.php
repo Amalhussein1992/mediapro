@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Media Manager - مدير وسائل التواصل الاجتماعي</title>
+    <!-- Version: 2025-01-19 22:00 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
