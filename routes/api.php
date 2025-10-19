@@ -288,4 +288,15 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 });
-// Auto deployment test - Sun, Oct 19, 2025  7:36:46 PM
+
+// Test endpoint for deployment verification
+Route::get('/test-deployment', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Auto deployment is working perfectly!',
+        'deployed_at' => now()->format('Y-m-d H:i:s'),
+        'server' => 'Plesk',
+        'laravel_version' => app()->version(),
+        'environment' => app()->environment(),
+    ]);
+});
