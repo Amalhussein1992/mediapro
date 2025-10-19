@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pro - Professional Social Media Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            padding: 20px;
+            background: #F3F4F6;
+            border-radius: 10px;
+            border-left: 4px solid #6366F1;
+        }
+
+        .feature h3 {
+            color: #6366F1;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #6B7280;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .api-section {
+            background: #F9FAFB;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .api-section h2 {
+            color: #1F2937;
+            margin-bottom: 20px;
+        }
+
+        .endpoint {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #E5E7EB;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .endpoint .method {
+            display: inline-block;
+            background: #6366F1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .endpoint .url {
+            color: #059669;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #F9FAFB;
+            color: #6B7280;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #6366F1;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #4F46E5;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #6366F1;
+        }
+
+        .stat .label {
+            color: #6B7280;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Media Pro</h1>
+            <p>Professional Social Media Management Platform</p>
+        </div>
+
+        <div class="content">
+            <div style="text-align: center;">
+                <span class="status">✓ API Server Running</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">6+</div>
+                    <div class="label">Social Platforms</div>
+                </div>
+                <div class="stat">
+                    <div class="number">100+</div>
+                    <div class="label">API Endpoints</div>
+                </div>
+                <div class="stat">
+                    <div class="number">∞</div>
+                    <div class="label">Possibilities</div>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 20px; color: #1F2937;">Key Features</h2>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>📱 Multi-Platform</h3>
+                    <p>Connect Facebook, Instagram, Twitter, LinkedIn, TikTok, YouTube, Snapchat, and Pinterest</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🤖 AI-Powered</h3>
+                    <p>Generate content with OpenAI, Gemini, and advanced AI tools</p>
+                </div>
+
+                <div class="feature">
+                    <h3>📊 Analytics</h3>
+                    <p>Comprehensive analytics and reporting dashboard</p>
+                </div>
+
+                <div class="feature">
+                    <h3>⏰ Scheduling</h3>
+                    <p>Schedule and publish posts across all platforms</p>
+                </div>
+
+                <div class="feature">
+                    <h3>💳 Subscriptions</h3>
+                    <p>Multiple payment gateways: Stripe, PayPal, Google Pay, Apple Pay</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🌍 Multi-Language</h3>
+                    <p>Support for Arabic, English, and translation services</p>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h2>API Endpoints</h2>
+                <p style="margin-bottom: 20px; color: #6B7280;">Access our powerful REST API</p>
+
+                <div class="endpoint">
+                    <span class="method">GET</span>
+                    <span class="url">/api/config</span>
+                    <span style="color: #6B7280;"> - Get app configuration</span>
+                </div>
+
+                <div class="endpoint">
+                    <span class="method">POST</span>
+                    <span class="url">/api/auth/register</span>
+                    <span style="color: #6B7280;"> - User registration</span>
+                </div>
+
+                <div class="endpoint">
+                    <span class="method">POST</span>
+                    <span class="url">/api/auth/login</span>
+                    <span style="color: #6B7280;"> - User login</span>
+                </div>
+
+                <div class="endpoint">
+                    <span class="method">GET</span>
+                    <span class="url">/api/posts</span>
+                    <span style="color: #6B7280;"> - Get all posts</span>
+                </div>
+
+                <div class="endpoint">
+                    <span class="method">POST</span>
+                    <span class="url">/api/posts</span>
+                    <span style="color: #6B7280;"> - Create new post</span>
+                </div>
+
+                <div class="endpoint">
+                    <span class="method">GET</span>
+                    <span class="url">/api/analytics</span>
+                    <span style="color: #6B7280;"> - Get analytics data</span>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/api/config" class="btn">Test API</a>
+                    <a href="/api/test-deployment" class="btn">Check Deployment</a>
+                </div>
+            </div>
+
+            <div style="background: #FEF3C7; padding: 20px; border-radius: 10px; border-left: 4px solid #F59E0B;">
+                <h3 style="color: #92400E; margin-bottom: 10px;">📱 Mobile App Coming Soon</h3>
+                <p style="color: #78350F;">The React Native mobile application is currently under development. This page shows the API backend that powers the app.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Media Pro API v1.0.0</strong></p>
+            <p style="margin-top: 10px;">Powered by Laravel 12 • Deployed on Plesk</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                <a href="https://github.com/Amalhussein1992/mediapro" style="color: #6366F1; text-decoration: none;">GitHub</a> •
+                Built with ❤️ by Media Pro Team
+            </p>
+        </div>
+    </div>
+</body>
+</html>
