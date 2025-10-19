@@ -19,6 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+// Temporary: Seed pages directly via web route
+Route::get('/run-seeder', function () {
+    try {
+        Artisan::call('db:seed', ['--class' => 'PagesSeeder']);
+
+        return '<h1>Success!</h1><p>Pages seeded successfully!</p><p>Now test: <a href="/features">Features</a>, <a href="/pricing">Pricing</a>, <a href="/about">About</a></p><p><strong>Delete this route after use!</strong></p>';
+    } catch (\Exception $e) {
+        return '<h1>Error</h1><p>' . $e->getMessage() . '</p>';
+    }
+});
+
 // Settings Dashboard (No auth required for testing)
 Route::get('/settings-dashboard', function () {
     return view('settings-dashboard');
