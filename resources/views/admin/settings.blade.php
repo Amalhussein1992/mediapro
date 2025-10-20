@@ -424,7 +424,7 @@
     <div class="main-grid">
         <!-- Settings Form -->
         <div>
-            <form id="settingsForm" enctype="multipart/form-data">
+            <form id="settingsForm" method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- App Information Section -->
