@@ -24,12 +24,18 @@ use App\Http\Controllers\API\SettingsController;
 use App\Http\Controllers\API\TranslationController;
 use App\Http\Controllers\API\SocialMediaController;
 use App\Http\Controllers\API\SocialLoginController;
+use App\Http\Controllers\API\SocialAuthController;
+use App\Http\Controllers\API\SocialMediaOAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+// Mobile App Social Authentication (Direct Token Verification)
+Route::post('/auth/google', [SocialAuthController::class, 'googleAuth']);
+Route::post('/auth/apple', [SocialAuthController::class, 'appleAuth']);
 
 // Social Login Routes (Google & Apple)
 Route::prefix('auth')->group(function () {
@@ -48,10 +54,23 @@ Route::prefix('auth')->group(function () {
 Route::get('/config', [AppSettingController::class, 'config']);
 Route::get('/settings/theme', [AppSettingController::class, 'theme']);
 Route::get('/settings/branding', [AppSettingController::class, 'branding']);
+
+// Direct route for settings (bypasses controller to test routing)
+Route::get('/settings/test', function () {
+    return response()->json([
+        'success' => true,
+        'message' => 'Laravel routing is working!',
+        'timestamp' => now()->toDateTimeString(),
+    ]);
+});
+
 Route::get('/settings/public', [SettingsController::class, 'getPublicSettings']);
 
 // Public subscription plans
-Route::get('/subscription-plans', [SubscriptionPlanController::class, 'index']);
+// Temporary: Redirect to working PHP endpoint
+Route::get('/subscription-plans', function () {
+    return redirect('/api-subscription-plans.php');
+});
 Route::get('/subscription-plans/{id}', [SubscriptionPlanController::class, 'show']);
 
 // Public translations (no auth required for reading)
@@ -67,19 +86,44 @@ Route::middleware('auth:sanctum')->group(function () {
     // Posts routes
     Route::apiResource('posts', PostController::class);
     Route::post('/posts/{post}/publish', [PostController::class, 'publish']);
+    Route::post('/posts/schedule', [PostController::class, 'store']); // For scheduling new posts
 
     // Users routes
     Route::apiResource('users', UserController::class);
-    Route::get('/user/subscription-info', [UserController::class, 'getSubscriptionInfo']);
+    // Temporary: Redirect to working PHP endpoint
+    Route::get('/user/subscription-info', function () {
+        return redirect('/api-subscription-info.php');
+    });
 
     // Social Accounts routes
     Route::apiResource('social-accounts', SocialAccountController::class);
     Route::post('/social-accounts/{id}/refresh', [SocialAccountController::class, 'refresh']);
 
-    // OAuth routes for social media platforms
+    // OAuth routes for social media platforms (Legacy)
     Route::prefix('oauth')->group(function () {
         Route::get('/{platform}/auth-url', [OAuthController::class, 'getAuthUrl']);
         Route::get('/{platform}/callback', [OAuthController::class, 'handleCallback']);
+    });
+
+    // Social Media OAuth routes (New - Complete Implementation)
+    Route::prefix('social-oauth')->group(function () {
+        // Get OAuth authorization URL
+        Route::post('/auth-url', [SocialMediaOAuthController::class, 'getAuthUrl']);
+
+        // Handle OAuth callback (Web)
+        Route::get('/callback', [SocialMediaOAuthController::class, 'handleCallback']);
+
+        // Handle OAuth callback (Mobile - POST with code)
+        Route::post('/callback', [SocialMediaOAuthController::class, 'handleCallback']);
+
+        // Get connected accounts
+        Route::get('/accounts', [SocialMediaOAuthController::class, 'getConnectedAccounts']);
+
+        // Disconnect account
+        Route::delete('/accounts/{id}', [SocialMediaOAuthController::class, 'disconnect']);
+
+        // Refresh access token
+        Route::post('/accounts/{id}/refresh', [SocialMediaOAuthController::class, 'refreshToken']);
     });
 
     // Subscription routes
