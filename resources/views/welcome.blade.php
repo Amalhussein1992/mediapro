@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Manager - مدير وسائل التواصل الاجتماعي</title>
+    <title>Media Pro - ميديا برو | Professional Social Media Management</title>
     <!-- Version: 2025-01-19 22:00 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -691,9 +691,9 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="{{ asset('logo.jpeg') }}" alt="SocialHub Logo">
-                <div class="logo-text content-en">SocialHub</div>
-                <div class="logo-text content-ar">سوشيال هب</div>
+                <img src="{{ asset('logo.jpeg') }}" alt="Media Pro Logo">
+                <div class="logo-text content-en">Media Pro</div>
+                <div class="logo-text content-ar">ميديا برو</div>
             </div>
 
             <div class="lang-switcher">
@@ -973,8 +973,8 @@
         </div>
 
         <div class="footer-bottom">
-            <p class="content-en">&copy; 2025 SocialHub. All rights reserved. Built with ❤️ for creators.</p>
-            <p class="content-ar">&copy; 2025 سوشيال هب. جميع الحقوق محفوظة. صنع بـ ❤️ للمبدعين.</p>
+            <p class="content-en">&copy; 2025 Media Pro. All rights reserved. Built with ❤️ for creators.</p>
+            <p class="content-ar">&copy; 2025 ميديا برو. جميع الحقوق محفوظة. صنع بـ ❤️ للمبدعين.</p>
         </div>
     </footer>
 
