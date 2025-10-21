@@ -935,9 +935,9 @@
                 <h3 class="content-en">Product</h3>
                 <h3 class="content-ar">المنتج</h3>
                 <ul class="footer-links">
-                    <li><a href="#" class="content-en">Features</a><a href="#" class="content-ar">الميزات</a></li>
-                    <li><a href="#" class="content-en">Pricing</a><a href="#" class="content-ar">الأسعار</a></li>
-                    <li><a href="#" class="content-en">API</a><a href="#" class="content-ar">واجهة برمجية</a></li>
+                    <li><a href="{{ route('features') }}" class="content-en">Features</a><a href="{{ route('features') }}" class="content-ar">الميزات</a></li>
+                    <li><a href="{{ route('pricing') }}" class="content-en">Pricing</a><a href="{{ route('pricing') }}" class="content-ar">الأسعار</a></li>
+                    <li><a href="{{ route('api') }}" class="content-en">API</a><a href="{{ route('api') }}" class="content-ar">واجهة برمجية</a></li>
                 </ul>
             </div>
 
@@ -945,9 +945,9 @@
                 <h3 class="content-en">Company</h3>
                 <h3 class="content-ar">الشركة</h3>
                 <ul class="footer-links">
-                    <li><a href="#" class="content-en">About</a><a href="#" class="content-ar">من نحن</a></li>
-                    <li><a href="#" class="content-en">Blog</a><a href="#" class="content-ar">المدونة</a></li>
-                    <li><a href="#" class="content-en">Careers</a><a href="#" class="content-ar">الوظائف</a></li>
+                    <li><a href="{{ route('about') }}" class="content-en">About</a><a href="{{ route('about') }}" class="content-ar">من نحن</a></li>
+                    <li><a href="{{ route('blog') }}" class="content-en">Blog</a><a href="{{ route('blog') }}" class="content-ar">المدونة</a></li>
+                    <li><a href="{{ route('careers') }}" class="content-en">Careers</a><a href="{{ route('careers') }}" class="content-ar">الوظائف</a></li>
                 </ul>
             </div>
 
@@ -955,9 +955,9 @@
                 <h3 class="content-en">Resources</h3>
                 <h3 class="content-ar">الموارد</h3>
                 <ul class="footer-links">
-                    <li><a href="#" class="content-en">Help Center</a><a href="#" class="content-ar">مركز المساعدة</a></li>
-                    <li><a href="#" class="content-en">Community</a><a href="#" class="content-ar">المجتمع</a></li>
-                    <li><a href="#" class="content-en">Contact</a><a href="#" class="content-ar">اتصل بنا</a></li>
+                    <li><a href="{{ route('help') }}" class="content-en">Help Center</a><a href="{{ route('help') }}" class="content-ar">مركز المساعدة</a></li>
+                    <li><a href="{{ route('community') }}" class="content-en">Community</a><a href="{{ route('community') }}" class="content-ar">المجتمع</a></li>
+                    <li><a href="{{ route('contact') }}" class="content-en">Contact</a><a href="{{ route('contact') }}" class="content-ar">اتصل بنا</a></li>
                 </ul>
             </div>
 
@@ -965,9 +965,9 @@
                 <h3 class="content-en">Legal</h3>
                 <h3 class="content-ar">قانوني</h3>
                 <ul class="footer-links">
-                    <li><a href="#" class="content-en">Privacy</a><a href="#" class="content-ar">الخصوصية</a></li>
-                    <li><a href="#" class="content-en">Terms</a><a href="#" class="content-ar">الشروط</a></li>
-                    <li><a href="#" class="content-en">Security</a><a href="#" class="content-ar">الأمان</a></li>
+                    <li><a href="{{ route('privacy') }}" class="content-en">Privacy</a><a href="{{ route('privacy') }}" class="content-ar">الخصوصية</a></li>
+                    <li><a href="{{ route('terms') }}" class="content-en">Terms</a><a href="{{ route('terms') }}" class="content-ar">الشروط</a></li>
+                    <li><a href="{{ route('security') }}" class="content-en">Security</a><a href="{{ route('security') }}" class="content-ar">الأمان</a></li>
                 </ul>
             </div>
         </div>
